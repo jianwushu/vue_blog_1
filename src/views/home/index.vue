@@ -1,5 +1,5 @@
 <template>
-  <div class="m-container-small m-padded-tb-large">
+  <div class="m-container m-padded-tb-large">
 <!--    <div style="height: 50px">-->
 <!--    </div>-->
     <div class="ui container">
@@ -35,7 +35,7 @@
                             </div>
                           </div>
                           <div class="item middle aligned">
-                            <i class="calendar icon"></i>&nbsp;<span>{{item.updateTime.split(" ")[0]}}</span>
+                            <i class="calendar icon"></i>&nbsp;<span>{{item.updateTime}}</span>
                           </div>
                           <div class="item middle aligned">
                             <i class="eye icon"></i>&nbsp;<span>{{item.views}}</span>
@@ -166,6 +166,7 @@
 
 <script>
   import {getList} from "@/api/blog";
+
   export default {
     name: "Home",
     components:{
@@ -184,6 +185,7 @@
     },
     created() {
       this.getBlogsData(this.query)
+
     },
     methods:{
       getBlogsData(query){
@@ -193,13 +195,16 @@
           this.pages = res.data.pages
         })
       },
+
       previewPage(){
         this.query.current = this.query.current-1
         this.getBlogsData(this.query)
+
       },
       nextPage(){
         this.query.current = this.query.current+1
         this.getBlogsData(this.query)
+
       }
     }
   }

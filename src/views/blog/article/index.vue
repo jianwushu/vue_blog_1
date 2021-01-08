@@ -36,7 +36,9 @@
         <hr class="ui line">
         <div id="md_haohao" class="entry-content l-h-2x vditor-reset  toc-content m-padded-tiny" >
         </div>
+
         <!--赞赏-->
+        <hr class="ui line">
         <div v-show="blog.allowFeed" class="ui center aligned basic segment">
           <button id="payButton" class="ui orange basic circular button">赞赏</button>
         </div>
@@ -135,7 +137,7 @@
                 tocbot.init({
                   tocSelector: '.js-toc',
                   contentSelector: '#md_haohao',
-                  headingSelector: 'h1, h2, h3',
+                  headingSelector: 'h1, h2, h3,h4',
                   scrollSmooth: true,
                 });
               }

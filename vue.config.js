@@ -9,8 +9,21 @@ module.exports = {
       }
     }
   },
-  devServer:{
-    port:8081
+  devServer: {
+    host: '0.0.0.0',
+    port: 8080,
+    open: true,
+    proxy:{
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://192.168.2.100:80`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    }
+
+
   }
 }
 

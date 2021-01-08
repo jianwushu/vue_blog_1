@@ -65,7 +65,7 @@
                 <label class="ui teal label">{{query.current}}/{{pages}}</label>
               </div>
               <div class="right aligned column m-padded-tiny">
-                <button @click="nextPage" :disabled="query.current===pages" class="ui mini teal basic button">下一页</button>
+                <button @click="nextPage" :disabled="query.current===pages||pages===0" class="ui mini teal basic button">下一页</button>
               </div>
             </div>
           </div>

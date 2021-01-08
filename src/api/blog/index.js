@@ -8,6 +8,12 @@ export function getList(query) {
     params: query
   })
 }
+export function getArchive() {
+  return request({
+    url: '/blog/archive',
+    method: 'get',
+  })
+}
 export function addBlog(data) {
   return request({
     url: '/blog/add',

@@ -7,12 +7,14 @@ import Layout from "@/layout/"
 //管理系统
 import LayoutAdmin from "@/layout/admin"
 
-import Home from "views/home";
+import Home from "views/blog/home";
+import Comment from "views/blog/comment";
+import Album from "views/blog/album";
+import Archive from "views/blog/archive"
 import Category from "views/category/Category";
 import Tag from "views/tag/Tag";
-import Archive from "views/archive"
-import About from "views/about/About";
-import Article from "views/article";
+import About from "views/blog/about";
+import Article from "views/blog/article";
 //后台
 import HomeAdmin from "views/admin"
 import Login from "views/admin/login"
@@ -32,6 +34,24 @@ const routes = [
         component: Home,
         meta:{
           title: '首页'
+        }
+      },{
+        path: 'comment',
+        component: Comment,
+        meta:{
+          title: '留言板'
+        }
+      },{
+        path: 'album',
+        component: Album,
+        meta:{
+          title: '相册'
+        }
+      },{
+        path: 'archive',
+        component: Archive,
+        meta:{
+          title: '归档'
         }
       },{
         path: 'category',
@@ -115,4 +135,12 @@ export default new Router({
   routes,
   mode: 'history',
   base: process.env.BASE_URL,
+  //跳转页面置顶
+  scrollBehavior(to,from,saveTop){
+    if(saveTop){
+      return saveTop;
+    }else{
+      return {x:0,y:0}
+    }
+  },
 })

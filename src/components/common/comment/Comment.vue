@@ -1,6 +1,6 @@
 <template>
   <div class="ui threaded comments" style="max-width: 100%">
-    <h3 class="ui dividing header">Comments</h3>
+    <h3 class="ui dividing header">{{title}}</h3>
 
     <div v-for="comment in comments" v-if="comment.parentComment===null"  class="comment">
       <a class="avatar">
@@ -76,6 +76,10 @@
       blogId:{
         type: Number,
         default: 0
+      },
+      title:{
+        type: String,
+        default: '评论'
       }
     },
     data(){

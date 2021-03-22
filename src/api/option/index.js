@@ -1,7 +1,8 @@
 import {request} from "@/utils/request";
-export function getOptionList() {
+export function getOptionsList(query) {
   return request({
-    url: '/option/list',
+    url: '/options/list',
     method: 'get',
+    params: query
   })
 }

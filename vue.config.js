@@ -1,6 +1,10 @@
 
+const port = process.env.port || process.env.npm_config_port || 8639 // 端口
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/admin/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
+  outputDir: 'dist',
+  // 用于放置生成的静态资源 (js、css、img、fonts) 的；（项目打包之后，静态资源会放在这个文件夹下）
+  assetsDir: 'static',
   configureWebpack: {
     resolve: {
       alias: {
@@ -13,19 +17,18 @@ module.exports = {
   },
   devServer: {
     host: '0.0.0.0',
-    port: 8080,
+    port: port,
     open: true,
     proxy:{
       [process.env.VUE_APP_BASE_API]: {
-        target: `http://192.168.2.100:80`,
+        target: `http://localhost:8082`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       }
-    }
-
-
+    },
+    disableHostCheck: true
   }
 }
 

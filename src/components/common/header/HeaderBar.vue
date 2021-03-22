@@ -2,7 +2,7 @@
   <nav id="headBar" class="ui inverted attached segment m-padded-tb-mini m-shadow-small ">
     <div class="ui container">
       <div class="ui inverted secondary stackable menu">
-        <router-link to="/"><h2 class="ui teal header item m-title">{{option.title}}</h2></router-link>
+        <router-link to="/"><h2 class="ui teal header item m-title">{{options.title}}</h2></router-link>
         <router-link
                 @click.native="navActive"
                 v-for="(item,index) in nav" :to="item.link"
@@ -26,12 +26,13 @@
 </template>
 
 <script>
-  import {getOptionList} from "@/api/option";
+  import bus from "components/eventBus"
+  import {getOptionsList} from "@/api/option";
   export default {
     name: "HeaderBar",
     data(){
       return{
-        option: {},
+        options: {},
         curIndex: 0,
         showNav: false,
         nav: [
@@ -41,16 +42,20 @@
           {title: "归档",link: '/archive',icon: "clone icon"},
           {title: "关于我",link: '/about',icon: "info icon"},
           // {title: "后台",link: '/admin',icon: "bug icon"},
-        ]
+        ],
+        query: {
+          type: 'index'
+        }
       }
     },
     created() {
-      this.getOptionData()
+      this.getOptionData(this.query)
     },
     methods: {
-      getOptionData(){
-        getOptionList().then(res=>{
-          this.option = res.data
+      getOptionData(query){
+        getOptionsList(query).then(res=>{
+          this.options = res.data
+          bus.$emit('getOptionData',res.data)
         })
       },
       navActive(){

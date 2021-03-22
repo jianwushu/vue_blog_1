@@ -5,8 +5,6 @@
         <comment title="留言板"/>
       </div>
     </div>
-
-
   </div>
 
 </template>

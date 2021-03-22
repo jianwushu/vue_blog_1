@@ -14,24 +14,5 @@ export function getArchive() {
     method: 'get',
   })
 }
-export function addBlog(data) {
-  return request({
-    url: '/blog/add',
-    method: 'post',
-    data:data
-  })
-}
-export function updBlog(data) {
-  return request({
-    url: '/blog/upd',
-    method: 'put',
-    data:data
-  })
-}
-export function del(ids) {
-  return request({
-    url: '/blog/del/'+ids,
-    method: 'delete',
-  })
-}
+
 

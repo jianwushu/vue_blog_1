@@ -5,7 +5,7 @@
         <div class="three wide column">
           <div class="ui inverted link list">
             <div class="item">
-              <img src="https://ilvyu.cn/images/head.jpg" class="ui rounded image" alt="" style="width: 10em">
+              <img :src="options.icon" class="ui mini rounded image" alt="" style="width: 10em">
             </div>
           </div>
         </div>
@@ -25,52 +25,46 @@
         </div>
         <div class="seven wide column">
           <h4 class="ui inverted header m-text-thin m-text-spaced">个人介绍</h4>
-          <p class="m-opacity-mini m-text-thin m-text-spaced">{{option.introduction}}</p>
+          <p class="m-opacity-mini m-text-thin m-text-spaced">{{options.introduction}}</p>
         </div>
       </div>
       <div class="ui inverted section divider"></div>
       <div class="licence m-opacity-tiny m-text-thin m-text-spaced">
-        <a href="#">赣ICP备19012743号</a> <br>Copyright © 2020
-        <a href="#">{{option.title}}</a><br>
-        毕设专用
-
+        <a href="#">赣ICP备19012743号</a> Copyright © 2020
+        <a href="#">{{options.title}}</a> 毕设专用
       </div>
     </div>
   </footer>
-
 </template>
 
 <script>
   import {getLinkList} from "@/api/link";
-  import {getOptionList} from "@/api/option";
+  import bus from "components/eventBus"
   export default {
     name: "FooterBar",
     data(){
       return {
         links:[],
-        option: {}
+        options: {}
       }
     },
     created() {
       this.getLinksData()
-      this.getOptionData()
+    },
+    mounted() {
+      let self = this
+      bus.$on('getOptionData',(options)=>{
+        self.options = options
+      })
     },
     methods:{
+      // 获取主页友链数据
       getLinksData(){
         getLinkList().then(res=>{
           this.links = res.data
-        })
-      },
-      getOptionData(){
-        getOptionList().then(res=>{
-          console.log(res.data)
-          this.option = res.data
         })
       },
     }
   }
 </script>
 
-<style scoped lang="scss">
-
-</style>
